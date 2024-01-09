@@ -3,11 +3,14 @@ package org.zerock.wcup.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -15,8 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ProductController {
 
     @GetMapping("/list")
-    public void list( ){
+    public void list(Model model){
         log.info("list...............");
+
+        List<String> list = List.of("AAA","BBB","CCC","DDD","EEE");
+
+        model.addAttribute("list",list);
+
 
     }
 
@@ -27,13 +35,9 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String registerPost(RedirectAttributes rttr){
+    public String registerPost(){
         log.info("registerPost...............");
 
-        //주소에 포함
-        rttr.addAttribute("msg", "ABCDE");
-        //눈에 보이지 않으나 한번만 전달
-        rttr.addFlashAttribute("result", "success");
 
         return "redirect:/prd/list";
     }

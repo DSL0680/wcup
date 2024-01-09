@@ -9,8 +9,17 @@
 </head>
 <body>
 <div layout:fragment="content">
+
     <h1>List Page</h1>
+    [[${list}]]
+
 </div>
+
+<script layout:fragment="script" th:inline="javascript">
+
+    const arr = [[${list}]];
+
+</script>
 
 </body>
 </html>
