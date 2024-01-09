@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/layout1.html}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-  <h1>Register Page</h1>
-  <form action="/prd/register" method="post" >
-      <button>CLICK</button>
-  </form>
+  <div layout:fragment="content">
+      <h1>Register Page</h1>
+      <form action="/prd/register" method="post" >
+          <button>CLICK</button>
+      </form>
+  </div>
+
 </body>
 </html>
