@@ -5,10 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-  <div>
+
+<style>
+    .header {
+        background-color: darkseagreen;
+        height: 30vh;
+    }
+    .middle {
+        background-color: darkgray;
+        width: 50vw;
+    }
+
+
+</style>
+
+  <div class="header">
       <h1>Header</h1>
   </div>
-  <div layout:fragment="content">
+  <div layout:fragment="content" class="header middle">
 
   </div>
   <div>
