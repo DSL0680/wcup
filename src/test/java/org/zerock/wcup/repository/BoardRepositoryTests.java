@@ -39,9 +39,15 @@ public class BoardRepositoryTests {
         Long bno = 123L;
         Optional<Board> result = boardRepository.findById(bno);
 
+        result.orElseThrow();
+
+
         log.info(result.get());
 
     }
+
+
+
     @Test
     public void testList(){
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
+import java.util.UUID;
 
 @SpringBootTest
 @Log4j2
@@ -13,6 +14,15 @@ class WcupApplicationTests {
 
     @Autowired
     DataSource dataSource;
+
+    @Test
+    public void testUUID(){
+
+        for (int i = 0; i <10 ; i++) {
+            log.info(UUID.randomUUID());
+        }
+
+    }
 
     @Test
     public void testConnection() throws Exception {
