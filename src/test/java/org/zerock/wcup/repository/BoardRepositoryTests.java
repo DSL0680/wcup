@@ -25,17 +25,18 @@ public class BoardRepositoryTests {
     //insert save
     @Test
     public void testInsert() {
-        Board board = Board.builder()
-                .title("테스트제목")
-                .content("Test Content")
-                .writer("user00")
-                .build();
-        Board result = boardRepository.save(board);
 
-        log.info(result);
-        log.info(result.getRegDate());
-        log.info(result.getModDate());
-    }
+        for(int i = 0; i< 100; i++){
+            Board board = Board.builder()
+                    .title("테스트제목"+i)
+                    .content("Test Content" + i)
+                    .writer("user00")
+                    .build();
+            Board result = boardRepository.save(board);
+
+            log.info(result);
+        }//end for
+    }//end method
 
     //select
     @Test
@@ -79,6 +80,25 @@ public class BoardRepositoryTests {
         log.info(result.getTotalPages());
 
         result.forEach(board -> log.info(board));
+    }
+
+    @Test
+    public void testQuery1(){
+        Long bno = 1L;
+        log.info(boardRepository.getBno(bno));
+    }
+
+    @Test
+    public void testQuery2(){
+        Long bno = 50L;
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+        log.info(boardRepository.list1(bno, pageable));
+    }
+    @Test
+    public void testQuery3(){
+        String title = "1";
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+        log.info(boardRepository.listTitle(title, pageable));
     }
 
 }
