@@ -21,4 +21,16 @@ public class Board extends BaseEntity{
 
     private String writer;
 
+    private boolean delFlag;
+
+    public void changeTitle(String title){
+        this.title = title;
+    }
+    public void changeContent(String content){
+        this.content = content;
+    }
+    public void changeDel(boolean delFlag){
+        this.delFlag = delFlag;
+    }
+
 }

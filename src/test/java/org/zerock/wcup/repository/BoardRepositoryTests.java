@@ -30,7 +30,11 @@ public class BoardRepositoryTests {
                 .content("Test Content")
                 .writer("user00")
                 .build();
-        boardRepository.save(board);
+        Board result = boardRepository.save(board);
+
+        log.info(result);
+        log.info(result.getRegDate());
+        log.info(result.getModDate());
     }
 
     //select
@@ -43,6 +47,19 @@ public class BoardRepositoryTests {
 
 
         log.info(result.get());
+
+    }
+
+    @Test
+    public void testUpdate(){
+        Long bno = 1L;
+        Optional<Board> result = boardRepository.findById(bno);
+
+        Board board = result.orElseThrow();
+
+        board.changeDel(true);
+
+        boardRepository.save(board);
 
     }
 
