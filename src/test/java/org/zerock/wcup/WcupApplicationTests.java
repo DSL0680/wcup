@@ -12,6 +12,7 @@ import java.util.UUID;
 @Log4j2
 class WcupApplicationTests {
 
+
     @Autowired
     DataSource dataSource;
 

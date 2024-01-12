@@ -20,6 +20,7 @@ public class BoardRepositoryTests {
 
     @Test
     public void test1(){
+
         log.info(boardRepository.getClass().getName());
     }
     //insert save
