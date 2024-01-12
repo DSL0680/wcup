@@ -38,7 +38,8 @@ public class BoardService {
         int size = pageRequestDTO.getSize();
 
         java.util.List<BoardDTO> dtoList =
-                result.map(board -> modelMapper.map(board, BoardDTO.class)).stream().toList();
+                result.map(board ->
+                        modelMapper.map(board, BoardDTO.class)).stream().toList();
 
         return new PageResponseDTO<>(total,current,size,dtoList);
     }
