@@ -37,7 +37,7 @@
                     <a class="page-link" th:href="@{ /board/list( page=${result.start -1})}" >Previous</a>
                 </li>
 
-                <li class="page-item" th:each="num : ${result.pageNumList}">
+                <li th:class="@{'page-item ' + ${num == result.current? 'active': ''}}" th:each="num : ${result.pageNumList}">
                     <a class="page-link" th:href="@{ /board/list( page=${num} ) }">[[ ${num} ]]</a>
                 </li>
 
