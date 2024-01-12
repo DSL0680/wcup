@@ -3,6 +3,7 @@ package org.zerock.wcup.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Log4j2
 public class BoardService {
     private final BoardRepository boardRepository;
     private final ModelMapper modelMapper;
@@ -52,4 +54,18 @@ public class BoardService {
         return boardDTO;
     }
 
+    public BoardDTO register(BoardDTO boardDTO){
+
+        Board board = modelMapper.map(boardDTO, Board.class);
+        log.info(board);
+
+        boardRepository.save(board);
+
+        log.info("after..............");
+
+        log.info(board);
+
+        return modelMapper.map(board, BoardDTO.class);
+
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.wcup.dto.BoardDTO;
 import org.zerock.wcup.dto.PageRequestDTO;
@@ -40,4 +41,16 @@ public class BoardController {
         return "board/get";
     }
 
+    @PostMapping("/register")
+    public String registerPost(BoardDTO boardDTO){
+
+        log.info("boardDTO: " + boardDTO);
+
+        BoardDTO result = boardService.register(boardDTO);
+
+        log.info("after register-------------------");
+        log.info(result);
+
+        return "redirect:/board/list";
+    }
 }
