@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.wcup.dto.BoardDTO;
 import org.zerock.wcup.dto.PageRequestDTO;
 import org.zerock.wcup.dto.PageResponseDTO;
@@ -41,8 +42,14 @@ public class BoardController {
         return "board/get";
     }
 
+    @GetMapping("/register")
+    public void registerGet(){
+
+    }
+
+
     @PostMapping("/register")
-    public String registerPost(BoardDTO boardDTO){
+    public String registerPost(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
 
         log.info("boardDTO: " + boardDTO);
 
@@ -50,6 +57,8 @@ public class BoardController {
 
         log.info("after register-------------------");
         log.info(result);
+
+        redirectAttributes.addFlashAttribute("msg", result);
 
         return "redirect:/board/list";
     }
