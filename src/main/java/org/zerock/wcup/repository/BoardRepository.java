@@ -6,10 +6,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.wcup.domain.Board;
+import org.zerock.wcup.dto.BoardListDTO;
 
 import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
+
+
+    //Long bno, String title, String writer, LocalDateTime regDate, long replyCount
+    @Query("select " +
+            " new org.zerock.wcup.dto.BoardListDTO( b.bno, b.title, b.writer, b.regDate, count(r) ) " +
+            " from " +
+            "   Board b left outer join Reply r on r.board = b " +
+            " where b.bno > 0 " +
+            " group by b ")
+    Page<BoardListDTO> listWithReplyCountDTO(Pageable pageable);
 
 
     @Query("select " +

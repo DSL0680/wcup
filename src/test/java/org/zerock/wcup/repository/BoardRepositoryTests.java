@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.wcup.domain.Board;
+import org.zerock.wcup.dto.BoardListDTO;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @SpringBootTest
@@ -100,6 +102,32 @@ public class BoardRepositoryTests {
         String title = "1";
         Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
         log.info(boardRepository.listTitle(title, pageable));
+    }
+
+    @Test
+    public void testWithReplyCount() {
+
+        Pageable pageable = PageRequest.of(0,10,Sort.by("bno").descending());
+
+        Page<Object[]> result =
+                boardRepository.listWithReplyCount(pageable);
+
+        log.info(result);
+
+        result.forEach(arr -> log.info(Arrays.toString(arr)));
+    }
+
+    @Test
+    public void testWithReplyCountDTO() {
+
+        Pageable pageable = PageRequest.of(0,10,Sort.by("bno").descending());
+
+        Page<BoardListDTO> result =
+                boardRepository.listWithReplyCountDTO(pageable);
+
+        log.info(result);
+
+        result.forEach(dto -> log.info(dto));
     }
 
 }
