@@ -24,7 +24,7 @@
 
             <tr th:each="dto: ${result.dtoList}">
                 <th scope="row">[[ ${dto.bno} ]]</th>
-                <td> <a th:href="@{'/board/' + ${dto.bno}}"> [[ ${dto.title} ]]     </a></td>
+                <td> <a th:href="@{'/board/' + ${dto.bno}}"> [[ ${dto.title} ]] <b>[ [[${dto.replyCount}]] ]</b>    </a></td>
                 <td>[[ ${dto.writer} ]]</td>
                 <td>[[ ${dto.regDate} ]]</td>
             </tr>

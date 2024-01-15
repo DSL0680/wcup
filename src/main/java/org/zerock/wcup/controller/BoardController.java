@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.wcup.dto.BoardDTO;
+import org.zerock.wcup.dto.BoardListDTO;
 import org.zerock.wcup.dto.PageRequestDTO;
 import org.zerock.wcup.dto.PageResponseDTO;
 import org.zerock.wcup.service.BoardService;
@@ -26,10 +27,7 @@ public class BoardController {
     public void list(PageRequestDTO pageRequestDTO, Model model){
         log.info("list...............");
         log.info(pageRequestDTO);
-
-        PageResponseDTO<BoardDTO> result =
-            boardService.list(pageRequestDTO);
-        model.addAttribute("result",result);
+        model.addAttribute("result",boardService.list(pageRequestDTO));
     }
 
     @GetMapping("/{bno}")

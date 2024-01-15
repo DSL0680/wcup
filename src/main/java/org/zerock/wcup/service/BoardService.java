@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zerock.wcup.domain.Board;
 import org.zerock.wcup.dto.BoardDTO;
+import org.zerock.wcup.dto.BoardListDTO;
 import org.zerock.wcup.dto.PageRequestDTO;
 import org.zerock.wcup.dto.PageResponseDTO;
 import org.zerock.wcup.repository.BoardRepository;
@@ -26,24 +27,20 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final ModelMapper modelMapper;
 
-    public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO){
+    public PageResponseDTO<BoardListDTO> list(PageRequestDTO pageRequestDTO){
 
         Pageable pageable = PageRequest.of(
                 pageRequestDTO.getPage() -1,
                 pageRequestDTO.getSize(),
                 Sort.by("bno").descending()
                 );
-        Page<Board> result = boardRepository.findAll(pageable);
+        Page<BoardListDTO> result = boardRepository.listWithReplyCountDTO(pageable);
 
         long total = result.getTotalElements();
         int current = pageRequestDTO.getPage();
         int size = pageRequestDTO.getSize();
 
-        java.util.List<BoardDTO> dtoList =
-                result.map(board ->
-                        modelMapper.map(board, BoardDTO.class)).stream().toList();
-
-        return new PageResponseDTO<>(total,current,size,dtoList);
+        return new PageResponseDTO<>(total,current,size,result.toList());
     }
 
     public BoardDTO get(Long bno){
