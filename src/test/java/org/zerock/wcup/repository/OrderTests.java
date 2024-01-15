@@ -10,6 +10,9 @@ import org.springframework.test.annotation.Commit;
 import org.zerock.wcup.domain.OrderDetail;
 import org.zerock.wcup.domain.OrderEntity;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SpringBootTest
 @Log4j2
 public class OrderTests {
@@ -34,9 +37,26 @@ public class OrderTests {
                 .orderEntity(orderEntity)
                 .build();
 
+        OrderDetail orderDetail2 = OrderDetail.builder()
+                .pno(12L)
+                .qty(4)
+                .orderEntity(orderEntity)
+                .build();
+
         orderDetailRepository.save(orderDetail1);
+        orderDetailRepository.save(orderDetail2);
 
     }
 
+    @Test
+    public void testSelect() {
+
+        List<Object[]> result = orderEntityRepository.getDataOfBuyer("u1");
+
+        for (Object[] arr : result) {
+            log.info(Arrays.toString(arr));
+        }
+
+    }
 
 }
