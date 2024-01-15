@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "board")
 @Table(name = "tbl_reply",
         indexes = {
             @Index(name = "idx_reply_board",
@@ -25,7 +25,7 @@ public class Reply extends BaseEntity{
 
     private String replyer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_bno")
     private Board board;
 

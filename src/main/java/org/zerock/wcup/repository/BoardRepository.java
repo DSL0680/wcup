@@ -11,6 +11,15 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
+
+    @Query("select " +
+            " b.bno, b.title, count(r) " +
+            " from " +
+            "   Board b left outer join Reply r on r.board = b " +
+            " where b.bno > 0 " +
+            " group by b ")
+    Page<Object[]> listWithReplyCount(Pageable pageable);
+
     @Query("select b from Board b where b.bno= :bno")
     Board getBno( @Param("bno") Long bno);
 
