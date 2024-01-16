@@ -20,7 +20,7 @@ public class ReplyController {
 
         log.info("bno: " + bno);
 
-        return null;
+        return replyService.listOfBoard(bno);
     }
 
     @GetMapping("/{rno}")

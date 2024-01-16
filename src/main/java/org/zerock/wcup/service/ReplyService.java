@@ -19,6 +19,10 @@ public class ReplyService {
     private final ReplyRepository replyRepository;
     private final ModelMapper modelMapper;
 
+    public java.util.List<ReplyDTO> listOfBoard(Long bno){
+        return replyRepository.listOfBoard(bno);
+    }
+
     public Long register(ReplyDTO replyDTO) {
         //dto -> 엔티티로 변환 -> save -> rno
 
