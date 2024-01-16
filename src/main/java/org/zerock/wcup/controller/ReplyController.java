@@ -26,11 +26,7 @@ public class ReplyController {
     @GetMapping("/{rno}")
     public ReplyDTO getOne(@PathVariable("rno") Long rno){
 
-        ReplyDTO replyDTO = new ReplyDTO();
-        replyDTO.setBno(3L);
-        replyDTO.setReplyText("댓글테스트");
-        replyDTO.setRno(rno);
-        return replyDTO;
+        return null;
     }
 
     @PostMapping("")
@@ -40,7 +36,7 @@ public class ReplyController {
 
         Long result = replyService.register(replyDTO);
 
-        return java.util.Map.of("result", 3L);
+        return java.util.Map.of("result", result);
     }
 
     @DeleteMapping("/{rno}")
