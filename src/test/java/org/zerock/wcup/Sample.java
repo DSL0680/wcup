@@ -1,23 +1,13 @@
 package org.zerock.wcup;
 
-public class Sample<E, K> {
+public class Sample{
 
-    public E value;
-    private String type;
+    private String name;
 
-
-
-    Sample(E value){
-        this.value = value;
+    @Override
+    public String toString() {
+        return "Sample{" +
+                "name='" + name + '\'' +
+                '}';
     }
-
-    public static void main(String[] args) {
-
-        Sample<String,Integer > s1 = new Sample<>("AAA");
-        Sample<Integer, String> s2 = new Sample<>(123);
-
-
-
-    }
-
 }

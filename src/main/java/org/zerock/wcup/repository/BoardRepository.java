@@ -19,7 +19,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
             " from " +
             "   Board b left outer join Reply r on r.board = b " +
             " where b.bno > 0 " +
-            " group by b ")
+            " group by b " )
     Page<BoardListDTO> listWithReplyCountDTO(Pageable pageable);
 
 
