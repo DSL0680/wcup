@@ -11,11 +11,64 @@
 <div layout:fragment="content">
     <h1>Read Page</h1>
     [[${board}]]
+
+    <div class="card" style="padding: 1em">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" >Reply Text</span>
+            </div>
+            <input type="text" id="replyText" class="form-control" >
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" >Replyer</span>
+            </div>
+            <input type="text" id="replyer" class="form-control" >
+        </div>
+        <div class="input-group mb-3">
+            <button id="addBtn">Add Reply</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <ul class="list-group" id="replyList">
+
+
+        </ul>
+    </div>
+
 </div>
 
 <script layout:fragment="script" th:inline="javascript">
 
-    console.log(axios)
+    const bno = [[ ${board.bno } ]]
+
+    document.querySelector("#addBtn").addEventListener("click", () => {
+        const replyTextStr = document.querySelector("#replyText").value
+        const replyerStr = document.querySelector("#replyer").value
+        alert("AAA" + replyTextStr +": " + replyerStr)
+    })
+
+    const loadReply = async () => {
+       const res =  await axios.get(`http://localhost:9090/replies/list/${bno}`)
+       console.log(res.data)
+
+       let str =""
+
+        for (let i = 0; i < res.data.length ; i++) {
+
+            const {rno, replyText, replyer} = res.data[i]
+
+            str += `<li class="list-group-item">${rno} --- ${replyText} --${replyer} </li>`
+        }
+
+        document.querySelector("#replyList").innerHTML = str
+
+    }
+
+    loadReply()
+
+
 
 </script>
 </body>
