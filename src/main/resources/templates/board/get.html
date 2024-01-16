@@ -43,10 +43,25 @@
 
     const bno = [[ ${board.bno } ]]
 
+    const addReply = async (param) => {
+
+        const res = await axios.post('http://localhost:9090/replies', param)
+        console.log(res.data)
+
+        loadReply()
+    }
+
     document.querySelector("#addBtn").addEventListener("click", () => {
-        const replyTextStr = document.querySelector("#replyText").value
-        const replyerStr = document.querySelector("#replyer").value
-        alert("AAA" + replyTextStr +": " + replyerStr)
+
+        const replyText = document.querySelector("#replyText").value
+        const replyer = document.querySelector("#replyer").value
+
+        const obj = {bno, replyText, replyer}
+
+        console.log(obj)
+
+        addReply(obj)
+
     })
 
     const loadReply = async () => {
