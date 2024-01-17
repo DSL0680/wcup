@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/basic.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="card">
+        <div class="card-header">
+            <h3>Menus</h3>
+        </div>
+
+        <style>
+            .menus {
+                border: 1px solid blue;
+                background-color: #fd7e14;
+                display: flex;
+                flex-wrap: wrap;
+                overflow: auto;
+            }
+            .menus li {
+                list-style: none;
+            }
+        </style>
+
+        <div class="card-body ">
+            [[ ${menus} ]]
+            <ul class="menus col-12">
+                <li class="col-sm-12 col-lg-6">AAA</li>
+                <li class="col-sm-12 col-lg-6">BBB</li>
+                <li class="col-sm-12 col-lg-6">CCC</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
