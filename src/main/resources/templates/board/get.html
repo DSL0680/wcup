@@ -37,24 +37,60 @@
         </ul>
     </div>
 
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                            onclick="closeModal()">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script layout:fragment="script" th:inline="javascript">
 
     const bno = [[ ${board.bno } ]]
 
+    const myModal = new bootstrap.Modal(document.querySelector('.modal'), null)
+
+    const replyTextObj = document.querySelector("#replyText")
+    const replyerObj = document.querySelector("#replyer")
+
+    function closeModal(){
+        myModal.hide()
+        loadReply()
+    }
+
     const addReply = async (param) => {
 
         const res = await axios.post('http://localhost:9090/replies', param)
         console.log(res.data)
 
-        loadReply()
+        myModal.show()
+        replyTextObj.value = ''
+        replyerObj.value =''
+
     }
 
     document.querySelector("#addBtn").addEventListener("click", () => {
 
-        const replyText = document.querySelector("#replyText").value
-        const replyer = document.querySelector("#replyer").value
+        const replyText = replyTextObj.value
+        const replyer = replyerObj.value
 
         const obj = {bno, replyText, replyer}
 
