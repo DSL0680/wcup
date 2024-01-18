@@ -54,6 +54,10 @@ public class ProductController {
         log.info("--------------------------");
         log.info(uploadedFileNames);
 
+        registerDTO.setUploadedFileNames(uploadedFileNames);
+
+        Long pno = productService.register(registerDTO);
+
         return "redirect:/prd/list";
     }
 
