@@ -16,23 +16,38 @@
 
         <style>
             .menus {
-                border: 1px solid blue;
-                background-color: #fd7e14;
+                justify-content: center;
+                justify-items: center;
                 display: flex;
                 flex-wrap: wrap;
                 overflow: auto;
+                padding-left: 0em;
             }
             .menus li {
                 list-style: none;
+                text-align: center;
             }
+
+            .product {
+                margin: auto;
+
+
+            }
+
         </style>
 
-        <div class="card-body ">
-            [[ ${menus} ]]
+        <div >
             <ul class="menus col-12">
-                <li class="col-sm-12 col-lg-6">AAA</li>
-                <li class="col-sm-12 col-lg-6">BBB</li>
-                <li class="col-sm-12 col-lg-6">CCC</li>
+                <li class="col-sm-12 col-lg-6 col-md-6 col-12" th:each="dto: ${menus}" >
+                    <div class="product">
+                        <img th:src="@{'/view/'+ ${dto.fileName} }" class="img-thumbnail">
+                        <div>
+                            <h2>[[ ${dto.pname} ]]</h2>
+                            <h2>[[ ${dto.price} ]]</h2>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>

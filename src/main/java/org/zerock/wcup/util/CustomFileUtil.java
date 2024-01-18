@@ -88,7 +88,7 @@ public class CustomFileUtil {
 
         if(!resource.exists()) {
 
-            resource = new FileSystemResource(uploadPath+ File.separator + "default.jpeg");
+            resource = new FileSystemResource(uploadPath+ File.separator + "default.jpg");
 
         }
 
