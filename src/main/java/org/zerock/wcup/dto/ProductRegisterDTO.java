@@ -1,7 +1,10 @@
 package org.zerock.wcup.dto;
 
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+
+@Data
 public class ProductRegisterDTO {
 
     private Long pno;
