@@ -26,4 +26,5 @@ public class KioskController {
         return "kiosk/menus";
     }
 
+
 }
